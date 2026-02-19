@@ -1,3 +1,6 @@
+<img width="996" height="404" alt="image" src="https://github.com/user-attachments/assets/3bf77c3f-c821-4428-bdd1-8a7564f46584" />
+
+
 ## Course Description ##
 
 In this course, you will learn how to integrate Neo4j into your Python projects.
