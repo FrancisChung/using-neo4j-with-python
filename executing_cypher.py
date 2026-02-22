@@ -1,8 +1,13 @@
-from neo4j import GraphDatabase
+import os
+from dotenv import load_dotenv
+from neo4j import GraphDatabase, basic_auth, Result
+
+load_dotenv()
+
 driver = GraphDatabase.driver(
-    "neo4j://localhost:7687",
-    auth=("neo4j", "neo4jd0m3")
-)
+  os.environ["NEO4J_URI"],
+  auth=basic_auth(os.environ["NEO4J_USERNAME"], os.environ["NEO4J_PASSWORD"]))
+
 driver.verify_connectivity()
 print("Driver connected")
 
@@ -20,7 +25,7 @@ result = driver.execute_query(
         for record in result
     ]
 )
-print(result)
+print("result", result)
 
 
 driver.close()
