@@ -16,6 +16,14 @@ MATCH path = (person:Person)-[actedIn:ACTED_IN]->(movie:Movie {title: $title})
 RETURN path, person, actedIn, movie
 """, title=movie)
 
-print("records", records)
-print("summary", summary)
-print("keys", keys)
+# print("records", records)
+# print("summary", summary)
+# print("keys", keys)
+
+for record in records:
+    node = record["movie"]
+    print(node.element_id)  # (1)
+    print(node.labels)  # (2)
+    print(node.items())  # (3)
+    print(node["name"])
+    print(node.get("name", "N/A"))
