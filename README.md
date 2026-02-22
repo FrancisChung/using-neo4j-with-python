@@ -21,3 +21,7 @@ How to install and instantiate the Neo4j Python Driver to your Python project
 How read and write transactions work with Neo4j
 
 Best practices on how to use Neo4j within your Python project.
+
+## Notes ##
+1. Neo4j local instance must have password changed before you can import data
+
