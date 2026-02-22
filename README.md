@@ -24,4 +24,5 @@ Best practices on how to use Neo4j within your Python project.
 
 ## Notes ##
 1. Neo4j local instance must have password changed before you can import data
-
+2. To start local neo4j - sudo neo4j start
+3. 
