@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from neo4j import GraphDatabase, basic_auth, Result
-from neo4j.time import DateTime
+from neo4j.time import DateTime, Duration
 from datetime import timezone, timedelta
 
 
@@ -41,3 +41,16 @@ for record in records:
     as_string = record["asString"]  # str
 
     print("Record:", date,"|",time, "|",datetime,"|",as_string)
+
+starts_at = DateTime.now()
+event_length = Duration(hours=1, minutes=30)
+ends_at = starts_at + event_length
+driver.execute_query("""
+CREATE (e:Event {
+  startsAt: $startsAt, endsAt: $endsAt,
+  duration: $eventLength, // (1)
+  interval: duration('P30M') // (2)
+})
+""",
+    startsAt=starts_at, endsAt=ends_at, eventLength=event_length
+)
