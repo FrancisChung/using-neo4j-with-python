@@ -26,4 +26,18 @@ CREATE (e:Event {
     dtstring="2024-05-15T14:30:00+02:00"
 )
 
-print("Result: ", result)
+print("Writing Result: ", result)
+
+records, summary, keys = driver.execute_query("""
+RETURN date() as date, time() as time, datetime() as datetime, toString(datetime()) as asString
+""")
+
+# Access the first record
+for record in records:
+    # Automatic conversion to Python driver types
+    date = record["date"]           # neo4j.time.Date
+    time = record["time"]           # neo4j.time.Time
+    datetime = record["datetime"]   # neo4j.time.DateTime
+    as_string = record["asString"]  # str
+
+    print("Record:", date,"|",time, "|",datetime,"|",as_string)
