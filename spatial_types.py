@@ -49,3 +49,19 @@ RETURN point({
 point = records[0]["point"]
 longitude, latitude, height = point
 print(longitude, latitude, height)
+
+# Distance example
+
+
+# Create two points
+point1 = CartesianPoint((1, 1))
+point2 = CartesianPoint((10, 10))
+
+# Query the distance using Cypher
+records, summary, keys = driver.execute_query("""
+RETURN point.distance($p1, $p2) AS distance
+""", p1=point1, p2=point2)
+
+# Print the distance from the result
+distance = records[0]["distance"]
+print("Distance: ", distance)
