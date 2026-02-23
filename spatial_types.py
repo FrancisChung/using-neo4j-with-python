@@ -22,3 +22,16 @@ print(point.x, point.y, point.z, point.srid) # 1.23, 4.56, 7.89, 9157
 
 # <2> Destructuring
 x, y, z = point
+
+
+from neo4j.spatial import WGS84Point
+
+ldn = WGS84Point((-0.118092, 51.509865))
+print(ldn.longitude, ldn.latitude, ldn.srid) # -0.118092, 51.509865, 4326
+
+shard = WGS84Point((-0.086500, 51.504501, 310))
+print(shard.longitude, shard.latitude, shard.height, shard.srid) # -0.0865, 51.504501, 310, 4979
+
+# Using destructuring
+longitude, latitude, height = shard
+
