@@ -23,6 +23,7 @@ print(point.x, point.y, point.z, point.srid) # 1.23, 4.56, 7.89, 9157
 # <2> Destructuring
 x, y, z = point
 
+# WGS84Point Example 1
 
 from neo4j.spatial import WGS84Point
 
@@ -35,3 +36,16 @@ print(shard.longitude, shard.latitude, shard.height, shard.srid) # -0.0865, 51.5
 # Using destructuring
 longitude, latitude, height = shard
 
+
+# WGS84Point Example 2
+records, summary, keys = driver.execute_query("""
+RETURN point({
+    latitude: 51.5,
+    longitude: -0.118,
+    height: 100
+}) AS point
+""")
+
+point = records[0]["point"]
+longitude, latitude, height = point
+print(longitude, latitude, height)
